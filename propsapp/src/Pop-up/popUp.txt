@@ -1,0 +1,58 @@
+import React, { useState } from 'react';
+import ImgNav from './ImgNav';
+import './style.css'
+import Data from './ImageUrls'
+
+function PopUp(props) {
+    let { openState, setTrigger } = props
+    const [imgNo, setImageNo] = useState(1)
+    const [imgUrl, setimgUrl] = useState(`https://firebasestorage.googleapis.com/v0/b/fir-react-63483.appspot.com/o/image${imgNo}.jpg?alt=media&token=424d63d0-a92a-476b-a965-86ce26738a18`)
+    console.log("outside" + imgNo)
+
+    const nextImg = () => {
+        if (imgNo + 1 < 4) {
+            setImageNo(imgNo + 1)
+            setimgUrl(`https://firebasestorage.googleapis.com/v0/b/fir-react-63483.appspot.com/o/image${imgNo}.jpg?alt=media&token=424d63d0-a92a-476b-a965-86ce26738a18`)
+            console.log(imgNo)
+        }
+        else
+            alert("this is last image")
+
+    }
+
+    const prevImg = () => {
+        if (imgNo - 1 >= 0) {
+            setImageNo(imgNo - 1)
+            setimgUrl(`https://firebasestorage.googleapis.com/v0/b/fir-react-63483.appspot.com/o/image${imgNo}.jpg?alt=media&token=424d63d0-a92a-476b-a965-86ce26738a18`)
+            console.log(imgNo)
+        }
+        else
+            alert("This is first Image")
+
+    }
+
+    return (openState) ? (
+        <>
+            <div>
+                <div className='container'>
+                    <div className='header'>
+                        <h1>This is container</h1>
+                        <h1 onClick={() => { setTrigger(false) }}>X</h1>
+                    </div>
+                    <div><img id="main-img" src={imgUrl} ></img></div>
+                    <div className='footer'>
+                        <button onClick={prevImg}>Previous</button>
+                        <button onClick={nextImg}>Next</button>
+
+                    </div>
+                    <div className='gallery'>
+                        <ImgNav imgNo={imgNo} />
+                    </div>
+                </div>
+
+            </div>
+        </>
+    ) : (null);
+}
+
+export default PopUp;

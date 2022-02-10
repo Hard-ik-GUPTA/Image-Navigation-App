@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+    // fetch('https://api.github.com/users')
+    // .then(response=>response.json()).then(data=>(console.log(data)))
+
+
+     function name() {
+        const url='http://dummy.restapiexample.com/api/v1/create'
+        const data='{"name":"HelloWorld","salary":"123","age":"23"}'
+        const param={
+            method:'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:data
+        }
+
+        fetch(url,param)
+        .then(response=>response.json())
+        .then(data=>console.log(data))
+
+
+    }
+    name();
+
+
+    </script>
+    
+</body>
+</html>

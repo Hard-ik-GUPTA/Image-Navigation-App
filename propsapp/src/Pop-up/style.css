@@ -1,0 +1,36 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+}
+.container{
+    position: relative;
+    margin: auto;
+    padding: 0px 20px;
+    width: 800px;
+    height: 800px;
+    background-color: aqua;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.header{
+    display: flex;
+    justify-content:space-between;
+
+}
+#main-img{
+    margin: 0px 200px;
+    width: 350px;
+    height: 250px;
+}
+.footer{
+    display: flex;
+    justify-content:space-evenly;
+}
+.img-gallery{
+    display: flex;
+    gap: 5px;
+}
