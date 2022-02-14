@@ -1,0 +1,88 @@
+import React, { useState } from 'react';
+import NavGrid from './NavGrid';
+import Main from './Main';
+import data from './data'
+
+  function App() {
+    console.log(data)
+
+    const [questionIdState,setQuestionIdState]=useState(data[0])
+    const [questionImageState, setQuestionImageState] = useState(data[0].img)
+
+    const {id,name,img}=data[0]
+
+    console.log(id);
+
+    return (
+      <>
+      <div className='quiz'>
+      <NavGrid data={data} questionState={questionIdState} setQuestionState={setQuestionIdState} questionImageState={questionImageState} setQuestionImageState={setQuestionImageState}/>
+      <Main data={data} questionState={questionIdState} setQuestionState={setQuestionIdState} questionImageState={questionImageState} setQuestionImageState={setQuestionImageState}/>
+      </div>
+      </>
+    );
+  }
+
+export default App;
+
+
+
+
+
+
+
+import React, { useState } from 'react';
+import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
+
+const Main = ({ data, questionState, setQuestionState,questionImageState, setQuestionImageState}) => {
+
+
+    const [buttonStyleState,setButtonStyleState]=useState({
+        backgroundColor:'white'
+    })
+
+    const [optionState,setOptionState]=useState('')
+
+
+    const checkBoundary = (param) => {
+        if (param <= 0) {
+            console.log(data.length)
+            return data.length
+        }
+        else if (param > data.length)
+            return 1
+        else
+            return param
+
+    }
+    const changeQuestionState = (param) => {
+        const x = (parseInt(questionState) + param)
+        const y = checkBoundary(x)
+        // setQuestionState(y)
+        console.log(y)
+        setQuestionImageState(data[y-1].img)
+    }
+    return (
+        <>
+            <div className="mainContainer">
+                <FiArrowLeft onClick={() => changeQuestionState(-1)} />
+
+                <div className="questionContainer">
+                    <img src={questionImageState} />
+                </div>
+
+                <FiArrowRight onClick={() => changeQuestionState(1)} />
+
+                <div className="answerContainer">
+                    <button id='A' style={buttonStyleState} >A</button>
+                    <button id='B' style={buttonStyleState}>B</button>
+                    <button id='C' style={buttonStyleState}>C</button>
+                    <button id='D' style={buttonStyleState}>D </button>
+
+                </div>
+            </div>
+        </>
+    );
+};
+
+export default Main;
